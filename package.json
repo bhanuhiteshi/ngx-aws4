@@ -110,5 +110,5 @@
   "scripts": {
     "test": "mocha ./test/fast.js ./test/slow.js -b -t 100s -R list"
   },
-  "version": "1.0.1"
+  "version": "1.0.0"
 }
