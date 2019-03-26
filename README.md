@@ -1,4 +1,4 @@
-ng-aws4
+ngx-aws4
 ----
 An utility to sign http(s) request options using Amazon's
 [AWS Signature Version 4](http://docs.amazonwebservices.com/general/latest/gr/signature-version-4.html).
@@ -9,7 +9,7 @@ Installation
 With [npm](http://npmjs.org/) do:
 
 ```
-npm install ng-aws4
+npm install ngx-aws4
 ```
 
 
@@ -17,7 +17,7 @@ Example
 -------
 
 ```javascript
-import * as aws4 from "ng-aws4";
+import * as aws4 from "ngx-aws4";
 
 ...
 
