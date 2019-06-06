@@ -140,7 +140,7 @@ RequestSigner.prototype.sign = function () {
   if (!this.parsedPath) this.prepareRequest()
 
   if (this.request.signQuery) {
-    this.parsedPath.query['X-Amz-Signature'] = this.signature()
+    this.parsedPath.query['X-Amz-Signature'] = this.signature().toString(crypto.enc.Hex)
   } else {
     this.request.headers.Authorization = this.authHeader()
   }
