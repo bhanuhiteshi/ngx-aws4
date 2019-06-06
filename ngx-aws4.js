@@ -98,9 +98,6 @@ RequestSigner.prototype.prepareRequest = function () {
 
     this.parsedPath.query = query = this.parsedPath.query || {}
 
-    if (this.credentials.sessionToken)
-      query['X-Amz-Security-Token'] = this.credentials.sessionToken
-
     if (this.service === 's3' && !query['X-Amz-Expires'])
       query['X-Amz-Expires'] = 86400
 
@@ -143,7 +140,7 @@ RequestSigner.prototype.sign = function () {
   if (!this.parsedPath) this.prepareRequest()
 
   if (this.request.signQuery) {
-    this.parsedPath.query['X-Amz-Signature'] = this.signature()
+    this.parsedPath.query['X-Amz-Signature'] = this.signature().toString(crypto.enc.Hex)
   } else {
     this.request.headers.Authorization = this.authHeader()
   }
@@ -325,6 +322,10 @@ RequestSigner.prototype.formatPath = function () {
 
   // Services don't support empty query string keys
   if (query[''] != null) delete query['']
+
+  if (this.request.signQuery && this.credentials.sessionToken) {
+    query['X-Amz-Security-Token'] = this.credentials.sessionToken;
+  }
 
   return path + '?' + encodeRfc3986(querystring.stringify(query))
 }
